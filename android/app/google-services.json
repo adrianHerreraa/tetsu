@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "29797062020",
+    "project_id": "tetsugym",
+    "storage_bucket": "tetsugym.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29797062020:android:005f699ec9455c5647b9d1",
+        "android_client_info": {
+          "package_name": "com.luisadrianpineda.tetsugym"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF3pmtx1fW8Ia_Wl9VwKu6tb77yJJTuVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
