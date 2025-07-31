@@ -2,7 +2,7 @@
 
 ---
 
-## 🟥 Nombre del Proyecto / Sistema
+## 🟥 Nombre del Proyecto / Sistema - 
 
 **TETSU**
 
