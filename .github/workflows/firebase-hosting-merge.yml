@@ -25,7 +25,7 @@ jobs:
       # 3. Install dependencies and build the project for web
       - run: |
           flutter pub get
-          flutter build web
+          flutter build web -t lib/environments/main_stage.dart
 
       # 4. Deploy to Firebase Hosting
       - uses: FirebaseExtended/action-hosting-deploy@v0
