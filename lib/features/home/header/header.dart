@@ -13,7 +13,7 @@ class Header extends StatelessWidget {
       color: RkColors.whiteColor,
       child: const Center(
         child: Text(
-          'System Operator (Luis Adrian) - Active profile - CRUD',
+          'Super usuario Root (Luis Adrian) - Active profile - CRUD',
           style: TextStyle(
             color: Colors.black,
             fontSize: 25,
