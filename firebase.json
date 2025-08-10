@@ -1,16 +1,1 @@
-{
-  "hosting": {
-    "public": "build/web",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  }
-}
+{"hosting":{"public":"build/web","ignore":["firebase.json","**/.*","**/node_modules/**"],"rewrites":[{"source":"**","destination":"/index.html"}]},"flutter":{"platforms":{"android":{"default":{"projectId":"tetsugym","appId":"1:29797062020:android:005f699ec9455c5647b9d1","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"tetsugym","appId":"1:29797062020:ios:b7a49bdc734c669847b9d1","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"macos":{"default":{"projectId":"tetsugym","appId":"1:29797062020:ios:b7a49bdc734c669847b9d1","uploadDebugSymbols":false,"fileOutput":"macos/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"tetsugym","configurations":{"android":"1:29797062020:android:005f699ec9455c5647b9d1","ios":"1:29797062020:ios:b7a49bdc734c669847b9d1","macos":"1:29797062020:ios:b7a49bdc734c669847b9d1","web":"1:29797062020:web:e8a3aefdf35803a647b9d1","windows":"1:29797062020:web:60c39bb1ea9b5f0c47b9d1"}}}}}}

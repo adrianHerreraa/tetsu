@@ -1,0 +1,75 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flutter STAGE (Chrome)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/environments/main_stage.dart",
+      "args": ["-d", "chrome"]
+    },
+    {
+      "name": "Flutter PROD (Chrome)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/environments/main.dart",
+      "args": ["-d", "chrome"]
+    },
+    /*{
+      "name": "Flutter STAGE (Android)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_stage.dart",
+      "args": ["-d", "android"]
+    },*/
+    /*{
+      "name": "Flutter PROD (Android)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": ["-d", "android"]
+    },*/
+    /*{
+      "name": "Flutter STAGE (macOS)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_stage.dart",
+      "args": ["-d", "macos"]
+    },*/
+    /*{
+      "name": "Flutter PROD (macOS)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": ["-d", "macos"]
+    },*/
+    /*{
+      "name": "Flutter STAGE (Windows)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_stage.dart",
+      "args": ["-d", "windows"]
+    },*/
+    /*{
+      "name": "Flutter PROD (Windows)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": ["-d", "windows"]
+    },*/
+    /*{
+      "name": "Flutter STAGE (iPhone)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_stage.dart",
+      "args": ["-d", "ios"]
+    },*/
+    /*{
+      "name": "Flutter PROD (iPhone)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": ["-d", "ios"]
+    }*/
+  ]
+}

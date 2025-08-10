@@ -12,7 +12,12 @@
           "package_name": "com.luisadrianpineda.tetsugym"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "29797062020-utql7v575agj3qpf95c4ejvfn35a27rc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBF3pmtx1fW8Ia_Wl9VwKu6tb77yJJTuVQ"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "29797062020-utql7v575agj3qpf95c4ejvfn35a27rc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "29797062020-dlkgq3201i044odllp1nj3582fb44b4v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.luisadrianpineda.tetsugym"
+              }
+            }
+          ]
         }
       }
     }
