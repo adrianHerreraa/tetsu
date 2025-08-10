@@ -12,7 +12,7 @@ class SettingsPage extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('email: ${user?.email}', textAlign: TextAlign.center),
+          Text('email: ${user?.email}', textAlign: TextAlign.center,),
           Text(
             'displayName: ${user?.displayName}',
             textAlign: TextAlign.center,
