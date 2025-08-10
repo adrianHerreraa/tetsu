@@ -29,7 +29,7 @@ void main() {
       runApp(
         ProviderScope(
           overrides: [appConfigProvider.overrideWithValue(appConfig)],
-          child: AppWidget(),
+          child: const AppWidget(),
         ),
       );
     },

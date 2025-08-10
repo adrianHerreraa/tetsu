@@ -10,16 +10,16 @@ class AppWidget extends StatelessWidget {
     // Modular.get<AppConfig>();
 
     return MaterialApp.router(
-      title: 'Tetsu',
+      title: 'Rick Kick Boxing',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
       routerConfig: appRouter,
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: [Locale.fromSubtags(languageCode: 'es')],
+      supportedLocales: const [Locale.fromSubtags(languageCode: 'es')],
     );
   }
 }

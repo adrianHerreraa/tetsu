@@ -14,7 +14,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 4), () async {
+    Future.delayed(const Duration(seconds: 4), () async {
       if (mounted) {
         context.replaceNamed(RkbRoutes.loginScreen);
       }

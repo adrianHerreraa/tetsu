@@ -7,12 +7,14 @@ class RoundedInput extends StatelessWidget {
     required this.suffixIcon,
     required this.hintText,
     this.maxLength,
+    this.isSecureText,
   });
 
   final TextEditingController controller;
   final IconData suffixIcon;
   final String hintText;
   final int? maxLength;
+  final bool? isSecureText;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class RoundedInput extends StatelessWidget {
       child: TextField(
         maxLength: maxLength ?? 25,
         controller: controller,
+        obscureText: isSecureText ?? false,
         cursorColor: Colors.white,
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
