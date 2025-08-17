@@ -12,14 +12,8 @@ final GoRouter appRouter = GoRouter(
   redirect: (context, state) {
     final user = FirebaseAuth.instance.currentUser;
     final loggingIn = state.uri.path == RkbRoutes.loginScreen;
-
-    // Si no hay usuario y NO estamos en login, redirige a login
     if (user == null && !loggingIn) return RkbRoutes.loginScreen;
-
-    // Si hay usuario y estamos en login, redirige a home
     if (user != null && loggingIn) return RkbRoutes.homeScreen;
-
-    // Deja que siga la navegación
     return null;
   },
   routes: [

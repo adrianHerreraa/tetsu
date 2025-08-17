@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:tetsugym/core/constants/rk_fonts.dart';
 import 'package:tetsugym/core/constants/rkb_assets.dart';
 import 'package:tetsugym/core/widgets/rounded_input.dart';
+import 'package:tetsugym/domain/auth_service.dart';
 import 'package:tetsugym/routes/rkb_routes.dart';
 import 'package:tetsugym/utils/material_sizes.dart';
 
@@ -20,8 +21,11 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  final AuthService _authService = AuthService();
+
   bool _isLoading = false;
-  String? _error;
+  bool? _error;
 
   Future<void> _login() async {
     setState(() {
@@ -30,18 +34,20 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
+      final user = await _authService.login(
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
       );
-      // Login exitoso, navega a home o donde quieras
-
-      if (mounted) {
+      if (user != null && mounted) {
         context.replaceNamed(RkbRoutes.homeScreen);
       }
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       setState(() {
-        _error = e.message;
+        _error = true;
+      });
+    } catch (e) {
+      setState(() {
+        _error = true;
       });
     } finally {
       setState(() {
@@ -341,85 +347,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
-
-    /*return Scaffold(
-      backgroundColor: RkColors.steelBlue,
-      body: Center(
-        child: BlurContainer(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSizes.small,
-              vertical: AppSizes.small,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                /*if (_error != null) ...[
-                  Text(_error!, style: const TextStyle(color: Colors.red)),
-                  const SizedBox(height: 8),
-                ],*/
-                /*const RCustomText(
-                  'Login',
-                  fontSize: AppSizes.xLarge,
-                  textColor: Colors.white,
-                ),*/
-                /*Padding(
-                  padding: const EdgeInsets.only(top: AppSizes.medium),
-                  child: RoundedInput(
-                    controller: _emailController,
-                    suffixIcon: CupertinoIcons.person,
-                    hintText: 'Username or email',
-                  ),
-                ),*/
-                /*Padding(
-                  padding: const EdgeInsets.only(top: AppSizes.medium),
-                  child: RoundedInput(
-                    isSecureText: true,
-                    hintText: 'Password',
-                    controller: _passwordController,
-                    suffixIcon: CupertinoIcons.lock,
-                  ),
-                ),*/
-                /*Padding(
-                  padding: const EdgeInsets.only(top: AppSizes.medium),
-                  child: InkWell(
-                    hoverColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: _isLoading
-                        ? () {}
-                        : () {
-                            _login();
-                          },
-                    child: Container(
-                      width: 100,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.4),
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: Colors.white, width: 1),
-                      ),
-                      child: Center(
-                        child: _isLoading
-                            ? const SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: CircularProgressIndicator(),
-                              )
-                            : const Text(
-                                'Login',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                      ),
-                    ),
-                  ),
-                ),*/
-              ],
-            ),
-          ),
-        ),
-      ),
-    );*/
   }
 }
