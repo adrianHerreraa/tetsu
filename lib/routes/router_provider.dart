@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tetsugym/core/screens/splash_screen.dart';
 import 'package:tetsugym/features/auth/screens/login_screen.dart';
@@ -8,6 +9,19 @@ import 'package:tetsugym/utils/animated_page_transition.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/',
+  redirect: (context, state) {
+    final user = FirebaseAuth.instance.currentUser;
+    final loggingIn = state.uri.path == RkbRoutes.loginScreen;
+
+    // Si no hay usuario y NO estamos en login, redirige a login
+    if (user == null && !loggingIn) return RkbRoutes.loginScreen;
+
+    // Si hay usuario y estamos en login, redirige a home
+    if (user != null && loggingIn) return RkbRoutes.homeScreen;
+
+    // Deja que siga la navegación
+    return null;
+  },
   routes: [
     GoRoute(
       name: RkbRoutes.splashScreen,

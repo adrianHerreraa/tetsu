@@ -9,10 +9,10 @@ import 'package:tetsugym/core/providers/app_config_provider.dart';
 import 'package:tetsugym/firebase_options.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
-void main() {
+Future<void> main() async {
   final Map<String, String> appConfig = {'': ''};
 
-  runZonedGuarded(
+  await runZonedGuarded(
     () async {
       tz.initializeTimeZones();
       WidgetsFlutterBinding.ensureInitialized();

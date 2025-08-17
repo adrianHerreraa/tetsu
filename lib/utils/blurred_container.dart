@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:blur/blur.dart';
+import 'package:flutter/material.dart';
 
 class BlurContainer extends StatelessWidget {
   final Widget child;

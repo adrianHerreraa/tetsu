@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tetsugym/core/constants/rk_fonts.dart';
 
 class RoundedInput extends StatelessWidget {
   const RoundedInput({
@@ -8,6 +9,8 @@ class RoundedInput extends StatelessWidget {
     required this.hintText,
     this.maxLength,
     this.isSecureText,
+    this.fill,
+    this.suffixIconColor,
   });
 
   final TextEditingController controller;
@@ -15,6 +18,8 @@ class RoundedInput extends StatelessWidget {
   final String hintText;
   final int? maxLength;
   final bool? isSecureText;
+  final double? fill;
+  final Color? suffixIconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +29,22 @@ class RoundedInput extends StatelessWidget {
         maxLength: maxLength ?? 25,
         controller: controller,
         obscureText: isSecureText ?? false,
-        cursorColor: Colors.white,
-        style: const TextStyle(color: Colors.white),
+        cursorColor: Colors.black,
+        style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(
           counterText: '',
           hintText: hintText,
-          hintStyle: const TextStyle(color: Colors.white70),
+          hintStyle: const TextStyle(
+            color: Colors.black,
+            fontFamily: RkFonts.regular,
+          ),
           filled: true,
-          fillColor: Colors.white.withValues(alpha: 0.1),
-          suffixIcon: Icon(suffixIcon, color: Colors.white, size: 20),
+          fillColor: Colors.white.withValues(alpha: fill ?? 0.9),
+          suffixIcon: Icon(
+            suffixIcon,
+            color: suffixIconColor ?? Colors.black,
+            size: 20,
+          ),
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 10,
             vertical: 8,
