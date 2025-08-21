@@ -1,16 +1,18 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:blur/blur.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tetsugym/core/constants/material_sizes.dart';
 import 'package:tetsugym/core/constants/rk_fonts.dart';
 import 'package:tetsugym/core/widgets/rounded_input.dart';
 import 'package:tetsugym/domain/auth_service.dart';
 import 'package:tetsugym/features/auth/helpers/get_background_by_day.dart';
 import 'package:tetsugym/routes/rkb_routes.dart';
-import 'package:tetsugym/utils/material_sizes.dart';
+// import 'package:tetsugym/core/constants/material_sizes.dart';
+import 'package:tetsugym/utils/material_colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -73,32 +75,31 @@ class _LoginScreenState extends State<LoginScreen> {
       body: FadeIn(
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               width: size.width,
               height: size.height,
-              color: Colors.purple,
               child: Image.asset(
                 GetBackgroundByDay().getBackgroundByDay(),
                 fit: BoxFit.cover,
               ),
             ),
-            Blur(
+            /*Blur(
               blur: 1,
-              blurColor: Colors.black.withValues(alpha: 0.1),
+              blurColor: Colors.black.withValues(alpha: 0.0),
               child: SizedBox(
                 width: size.width,
                 height: size.height,
               ),
-            ),
+            ),*/
             Padding(
               padding: const EdgeInsets.only(
-                right: 50,
+                right: 150,
               ),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: SizedBox(
-                  width: (size.width / 2) - 200,
-                  height: size.height - 200,
+                  width: 500,
+                  height: 700,
                   child: Stack(
                     children: [
                       Blur(
@@ -127,10 +128,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: SizedBox(
                                     width: double.infinity,
                                     height: double.infinity,
-                                    child: CachedNetworkImage(
+                                    /*child: CachedNetworkImage(
                                       imageUrl:
                                           'https://cdn.pixabay.com/photo/2025/08/01/15/06/pixel-art-9748845_1280.png',
-                                    ),
+                                    ),*/
                                   ),
                                 ),
                                 Flexible(
@@ -160,8 +161,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ),
                                           child: RoundedInput(
                                             controller: _emailController,
-                                            suffixIcon: CupertinoIcons.person,
-                                            hintText: 'Username or email',
+                                            // suffixIcon: CupertinoIcons.person,
+                                            hintText: 'Email',
                                           ),
                                         ),
                                         Padding(
@@ -172,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             isSecureText: true,
                                             hintText: 'Password',
                                             controller: _passwordController,
-                                            suffixIcon: CupertinoIcons.lock,
+                                            suffixIcon: CupertinoIcons.eye_fill,
                                           ),
                                         ),
                                         Padding(
@@ -240,7 +241,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                                         width: 20,
                                                         height: 20,
                                                         child:
-                                                            CircularProgressIndicator(),
+                                                            CircularProgressIndicator(
+                                                              color: RkColors.whiteColor,
+                                                            ),
                                                       )
                                                     : const Text(
                                                         'Log in',

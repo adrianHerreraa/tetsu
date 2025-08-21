@@ -1,56 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tetsugym/features/home/dashboard/dashboard_screen.dart';
-import 'package:tetsugym/features/home/header/header.dart';
+// import 'package:tetsugym/features/home/header/header.dart';
 import 'package:tetsugym/features/home/providers/general_sections/aside_sections_provider.dart';
 import 'package:tetsugym/features/home/side_menu/side_menu_base.dart';
 import 'package:tetsugym/features/settings/settings_page.dart';
+// import 'package:tetsugym/utils/material_colors.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // final user = FirebaseAuth.instance.currentUser;
-
     return Scaffold(
-      body: Column(
+      backgroundColor: Colors.grey.withValues(alpha: 0.1),
+      body: Stack(
         children: [
-          const Header(),
-          Expanded(
-            child: Row(
-              children: [
-                const SideMenuBase(),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    color: Colors.grey.withValues(alpha: 0.1),
-                    child: const ManagePagesWidget(),
-                  ),
-                ),
-              ],
+          // const Header(),
+          Container(
+            color: Colors.white,
+          ),
+          Positioned.fill(
+            left: 80,
+            child: ManagePagesWidget(),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 10,
+              top: 10,
+              bottom: 10,
+            ),
+            child: Positioned.fill(
+              child: SideMenuBase(),
             ),
           ),
         ],
       ),
     );
-
-    /*return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-              context.replaceNamed(RkbRoutes.loginScreen);
-            },
-          ),
-        ],
-      ),
-      body: Center(child: Text('Bienvenido, ${user?.email ?? 'usuario'}')),
-    );*/
   }
 }
 
@@ -59,15 +45,17 @@ class ManagePagesWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final getSectionSelected = ref.watch(asideSectionsProvider).getSectionSelected;
+    final getSectionSelected = ref
+        .watch(asideSectionsProvider)
+        .getSectionSelected;
 
-    switch(getSectionSelected.index){
+    switch (getSectionSelected.index) {
       case 0:
-      return const DashboardScreen();
+        return const DashboardScreen();
       case 1:
-      return const SettingsPage();
+        return const SettingsPage();
       default:
-      return const SizedBox();
+        return const SizedBox();
     }
   }
 }

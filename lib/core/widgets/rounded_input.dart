@@ -5,7 +5,7 @@ class RoundedInput extends StatelessWidget {
   const RoundedInput({
     super.key,
     required this.controller,
-    required this.suffixIcon,
+    this.suffixIcon,
     required this.hintText,
     this.maxLength,
     this.isSecureText,
@@ -14,7 +14,7 @@ class RoundedInput extends StatelessWidget {
   });
 
   final TextEditingController controller;
-  final IconData suffixIcon;
+  final IconData? suffixIcon;
   final String hintText;
   final int? maxLength;
   final bool? isSecureText;
@@ -34,17 +34,19 @@ class RoundedInput extends StatelessWidget {
         decoration: InputDecoration(
           counterText: '',
           hintText: hintText,
-          hintStyle: const TextStyle(
-            color: Colors.black,
+          hintStyle: TextStyle(
+            color: Colors.black.withValues(alpha: 0.5),
             fontFamily: RkFonts.regular,
           ),
           filled: true,
           fillColor: Colors.white.withValues(alpha: fill ?? 0.9),
-          suffixIcon: Icon(
-            suffixIcon,
-            color: suffixIconColor ?? Colors.black,
-            size: 20,
-          ),
+          suffixIcon: suffixIcon != null
+              ? Icon(
+                  suffixIcon,
+                  color: suffixIconColor ?? Colors.black.withValues(alpha: 0.5),
+                  size: 20,
+                )
+              : null,
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 10,
             vertical: 8,

@@ -11,6 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Icons
+  material_symbols_icons: ^4.2867.0
+
   # State
   flutter_riverpod: ^2.6.1
 
@@ -70,45 +73,29 @@ flutter:
     # list giving the asset and other descriptors for the font. For
     # example:
   fonts:
-    - family: MontserratRegular
+    - family: FunnelDisplayRegular
       fonts:
-        - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
+        - asset: assets/fonts/FunnelDisplay/FunnelDisplay-Regular.ttf
 
-    - family: MontserratItalic
+    - family: FunnelDisplayLight
       fonts:
-        - asset: assets/fonts/Montserrat/Montserrat-Italic.ttf
+        - asset: assets/fonts/FunnelDisplay/FunnelDisplay-Light.ttf
 
-    - family: MontserratBold
+    - family: FunnelDisplayMedium
       fonts:
-        - asset: assets/fonts/Montserrat/Montserrat-Bold.ttf
+        - asset: assets/fonts/FunnelDisplay/FunnelDisplay-Medium.ttf
 
-    - family: MontserratBoldItalic
+    - family: FunnelDisplaySemiBold
       fonts:
-        - asset: assets/fonts/Montserrat/Montserrat-BoldItalic.ttf
+        - asset: assets/fonts/FunnelDisplay/FunnelDisplay-SemiBold.ttf
 
-    - family: MontserratSemiBold
+    - family: FunnelDisplayBold
       fonts:
-        - asset: assets/fonts/Montserrat/Montserrat-SemiBold.ttf
+        - asset: assets/fonts/FunnelDisplay/FunnelDisplay-Bold.ttf
 
-    - family: MontserratSemiBoldItalic
+    - family: FunnelDisplayExtraBold
       fonts:
-        - asset: assets/fonts/Montserrat/Montserrat-SemiBoldItalic.ttf
-
-    - family: MontserratExtraBold
-      fonts:
-        - asset: assets/fonts/Montserrat/Montserrat-ExtraBold.ttf
-
-    - family: MontserratExtraBoldItalic
-      fonts:
-        - asset: assets/fonts/Montserrat/Montserrat-ExtraBoldItalic.ttf
-
-    - family: MontserratBlack
-      fonts:
-        - asset: assets/fonts/Montserrat/Montserrat-Black.ttf
-
-    - family: MontserratBlackItalic
-      fonts:
-        - asset: assets/fonts/Montserrat/Montserrat-BlackItalic.ttf
+        - asset: assets/fonts/FunnelDisplay/FunnelDisplay-ExtraBold.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
