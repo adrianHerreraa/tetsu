@@ -207,7 +207,7 @@ class SectionOption extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 2,
+                    top: 4,
                   ),
                   child: Container(
                     width: 3,
