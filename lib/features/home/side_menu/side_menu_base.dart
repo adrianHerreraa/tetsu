@@ -1,14 +1,13 @@
 import 'package:blur/blur.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:tetsugym/core/constants/rk_font_sizes.dart';
 import 'package:tetsugym/features/home/providers/general_sections/aside_sections_provider.dart';
 import 'package:tetsugym/routes/rkb_routes.dart';
-import 'package:tetsugym/utils/material_colors.dart';
 
 class SideMenuBase extends ConsumerWidget {
   const SideMenuBase({super.key});
@@ -19,11 +18,11 @@ class SideMenuBase extends ConsumerWidget {
     final watch = ref.watch(asideSectionsProvider);
     final read = ref.read(asideSectionsProvider.notifier);
 
-    return Container(
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 500),
       width: 60,
       height: size.height,
       decoration: BoxDecoration(
-        color: Colors.transparent,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -39,34 +38,38 @@ class SideMenuBase extends ConsumerWidget {
             blur: 10,
             colorOpacity: .8,
             blurColor: Colors.white,
-            child: SizedBox(
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 500),
               width: 60,
               height: size.height,
             ),
           ),
-          SizedBox(
+          AnimatedContainer(
+            duration: Duration(milliseconds: 500),
             width: 60,
             height: size.height,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 50,
-                  width: 30,
                   decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
-                        color: RkColors.whiteColor.withValues(
-                          alpha: 0.4,
-                        ),
-                        width: 2,
+                        color: Colors.black.withValues(alpha: 0.1),
                       ),
                     ),
                   ),
+                  height: 50,
                   child: Center(
-                    child: SectionOption(
-                      icon: Symbols.arrow_menu_open,
-                      withPading: false,
-                      voidCallback: () {},
+                    child: ClipOval(
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            'https://cdn.pixabay.com/photo/2018/01/03/19/54/fashion-3059143_960_720.jpg',
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -150,6 +153,7 @@ class SideMenuBase extends ConsumerWidget {
                 SectionOption(
                   icon: Icons.logout,
                   withPading: true,
+                  isRed: true,
                   voidCallback: () async {
                     await FirebaseAuth.instance.signOut();
                     context.replaceNamed(RkbRoutes.loginScreen);
@@ -171,12 +175,14 @@ class SectionOption extends StatelessWidget {
     required this.voidCallback,
     this.isSelected,
     required this.withPading,
+    this.isRed,
   });
 
   final IconData icon;
   final Function() voidCallback;
   final bool? isSelected;
   final bool withPading;
+  final bool? isRed;
 
   @override
   Widget build(BuildContext context) {
@@ -195,11 +201,16 @@ class SectionOption extends StatelessWidget {
             focusColor: Colors.transparent,
             highlightColor: Colors.transparent,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Icon(
                   icon,
-                  size: 20,
-                  color: (isSelected == null)
+                  size: 24,
+                  color: isRed ?? false
+                      ? Colors.red
+                      : (isSelected == null)
                       ? Colors.grey.withValues(alpha: 0.5)
                       : isSelected!
                       ? Colors.black
@@ -207,7 +218,7 @@ class SectionOption extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 4,
+                    top: 5,
                   ),
                   child: Container(
                     width: 3,

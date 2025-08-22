@@ -27,7 +27,7 @@ class _AsideSectionsState with ChangeNotifier {
   ];
 
   AsideSectionsModel _sectionSelected = AsideSectionsModel(
-    index: 1,
+    index: 0,
     name: 'Settings',
   );
 

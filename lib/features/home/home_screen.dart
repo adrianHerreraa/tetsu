@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tetsugym/features/home/dashboard/dashboard_screen.dart';
@@ -13,26 +14,21 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.withValues(alpha: 0.1),
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
-          // const Header(),
-          Container(
-            color: Colors.white,
-          ),
-          Positioned.fill(
-            left: 80,
+          Positioned(
+            left: 100,
+            right: 0,
+            top: 0,
+            bottom: 0,
             child: ManagePagesWidget(),
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 10,
-              top: 10,
-              bottom: 10,
-            ),
-            child: Positioned.fill(
-              child: SideMenuBase(),
-            ),
+          Positioned(
+            top: 10,
+            bottom: 10,
+            left: 10,
+            child: SideMenuBase(),
           ),
         ],
       ),
@@ -53,7 +49,27 @@ class ManagePagesWidget extends ConsumerWidget {
       case 0:
         return const DashboardScreen();
       case 1:
-        return const SettingsPage();
+        return FadeIn(
+          child: const SettingsPage(),
+        );
+      case 2:
+        return const Center(child: Text('2'));
+      case 3:
+        return const Center(child: Text('3'));
+      case 4:
+        return const Center(child: Text('4'));
+      case 5:
+        return const Center(child: Text('5'));
+      case 6:
+        return const Center(child: Text('6'));
+      case 7:
+        return const Center(child: Text('7'));
+      case 8:
+        return const Center(child: Text('8'));
+      case 9:
+        return const Center(child: Text('9'));
+      case 10:
+        return const Center(child: Text('10'));
       default:
         return const SizedBox();
     }
