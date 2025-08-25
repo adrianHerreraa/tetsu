@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tetsugym/config/app_widget.dart';
 import 'package:tetsugym/core/providers/app_config_provider.dart';
+import 'package:tetsugym/core/shared_preferences/shared_preferences.dart';
 import 'package:tetsugym/firebase_options.dart';
 import 'package:timezone/data/latest.dart' as tz;
 
@@ -20,6 +21,8 @@ Future<void> main() async {
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
+
+      await SharedPreferencesService.init();
 
       // final config = await AppRemoteConfig.getInstance();
       // final keys = await config.getStgKeys();

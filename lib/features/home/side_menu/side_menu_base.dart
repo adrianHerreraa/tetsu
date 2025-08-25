@@ -6,17 +6,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tetsugym/core/constants/rk_font_sizes.dart';
+import 'package:tetsugym/core/shared_preferences/shared_preferences.dart';
 import 'package:tetsugym/features/home/providers/general_sections/aside_sections_provider.dart';
 import 'package:tetsugym/routes/rkb_routes.dart';
 
-class SideMenuBase extends ConsumerWidget {
+class SideMenuBase extends ConsumerStatefulWidget {
   const SideMenuBase({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SideMenuBase> createState() => _SideMenuBaseState();
+}
+
+class _SideMenuBaseState extends ConsumerState<SideMenuBase> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () async {
+      await _loadPrefs();
+    });
+  }
+
+  Future<void> _loadPrefs() async {
+    final preferences = SharedPreferencesService();
+    final inMemory = preferences.getInt(PrefKeys.sideMenu) ?? 0;
+    final read = ref.read(asideSectionsProvider.notifier);
+    read.updateSectionsFilters(index: inMemory);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final watch = ref.watch(asideSectionsProvider);
     final read = ref.read(asideSectionsProvider.notifier);
+
+    final preferences = SharedPreferencesService();
 
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),
@@ -79,7 +102,8 @@ class SideMenuBase extends ConsumerWidget {
                     icon: CupertinoIcons.home,
                     withPading: true,
                     isSelected: watch.imAlreadySelected(index: 0),
-                    voidCallback: () {
+                    voidCallback: () async {
+                      await preferences.setInt(PrefKeys.sideMenu, 0);
                       read.updateSectionsFilters(index: 0);
                     },
                   ),
@@ -87,7 +111,8 @@ class SideMenuBase extends ConsumerWidget {
                 SectionOption(
                   icon: Icons.notifications,
                   withPading: true,
-                  voidCallback: () {
+                  voidCallback: () async {
+                    await preferences.setInt(PrefKeys.sideMenu, 2);
                     read.updateSectionsFilters(index: 2);
                   },
                   isSelected: watch.imAlreadySelected(index: 2),
@@ -96,7 +121,8 @@ class SideMenuBase extends ConsumerWidget {
                   icon: Icons.wallet_outlined,
                   isSelected: watch.imAlreadySelected(index: 3),
                   withPading: true,
-                  voidCallback: () {
+                  voidCallback: () async {
+                    await preferences.setInt(PrefKeys.sideMenu, 3);
                     read.updateSectionsFilters(index: 3);
                   },
                 ),
@@ -104,7 +130,8 @@ class SideMenuBase extends ConsumerWidget {
                   icon: Icons.group,
                   isSelected: watch.imAlreadySelected(index: 4),
                   withPading: true,
-                  voidCallback: () {
+                  voidCallback: () async {
+                    await preferences.setInt(PrefKeys.sideMenu, 4);
                     read.updateSectionsFilters(index: 4);
                   },
                 ),
@@ -112,7 +139,8 @@ class SideMenuBase extends ConsumerWidget {
                   icon: Icons.inventory_2_outlined,
                   isSelected: watch.imAlreadySelected(index: 5),
                   withPading: true,
-                  voidCallback: () {
+                  voidCallback: () async {
+                    await preferences.setInt(PrefKeys.sideMenu, 5);
                     read.updateSectionsFilters(index: 5);
                   },
                 ),
@@ -120,7 +148,8 @@ class SideMenuBase extends ConsumerWidget {
                   icon: Icons.account_balance_outlined,
                   isSelected: watch.imAlreadySelected(index: 6),
                   withPading: true,
-                  voidCallback: () {
+                  voidCallback: () async {
+                    await preferences.setInt(PrefKeys.sideMenu, 6);
                     read.updateSectionsFilters(index: 6);
                   },
                 ),
@@ -128,7 +157,8 @@ class SideMenuBase extends ConsumerWidget {
                   icon: Icons.restaurant,
                   isSelected: watch.imAlreadySelected(index: 7),
                   withPading: true,
-                  voidCallback: () {
+                  voidCallback: () async {
+                    await preferences.setInt(PrefKeys.sideMenu, 7);
                     read.updateSectionsFilters(index: 7);
                   },
                 ),
@@ -136,7 +166,8 @@ class SideMenuBase extends ConsumerWidget {
                   icon: Icons.fitness_center_outlined,
                   isSelected: watch.imAlreadySelected(index: 8),
                   withPading: true,
-                  voidCallback: () {
+                  voidCallback: () async {
+                    await preferences.setInt(PrefKeys.sideMenu, 8);
                     read.updateSectionsFilters(index: 8);
                   },
                 ),
@@ -144,7 +175,8 @@ class SideMenuBase extends ConsumerWidget {
                   icon: CupertinoIcons.settings,
                   isSelected: watch.imAlreadySelected(index: 1),
                   withPading: true,
-                  voidCallback: () {
+                  voidCallback: () async {
+                    await preferences.setInt(PrefKeys.sideMenu, 1);
                     read.updateSectionsFilters(index: 1);
                   },
                 ),

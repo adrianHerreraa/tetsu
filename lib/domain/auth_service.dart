@@ -5,8 +5,9 @@ import '../data/auth_repository.dart';
 class AuthService {
   final AuthRepository _authRepository;
 
-  AuthService({AuthRepository? authRepository})
-    : _authRepository = authRepository ?? AuthRepository();
+  AuthService({
+    AuthRepository? authRepository,
+  }) : _authRepository = authRepository ?? AuthRepository();
 
   Future<User?> login(String email, String password) async {
     // Aquí puedes agregar validaciones o lógica adicional si quieres
