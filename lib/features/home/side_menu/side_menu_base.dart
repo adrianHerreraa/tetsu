@@ -9,6 +9,7 @@ import 'package:tetsugym/core/constants/rk_font_sizes.dart';
 import 'package:tetsugym/core/shared_preferences/shared_preferences.dart';
 import 'package:tetsugym/features/home/providers/general_sections/aside_sections_provider.dart';
 import 'package:tetsugym/routes/rkb_routes.dart';
+import 'package:tetsugym/utils/widgets/rk_inkwell.dart';
 
 class SideMenuBase extends ConsumerStatefulWidget {
   const SideMenuBase({super.key});
@@ -75,27 +76,6 @@ class _SideMenuBaseState extends ConsumerState<SideMenuBase> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Colors.black.withValues(alpha: 0.1),
-                      ),
-                    ),
-                  ),
-                  height: 50,
-                  child: Center(
-                    child: ClipOval(
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            'https://cdn.pixabay.com/photo/2018/01/03/19/54/fashion-3059143_960_720.jpg',
-                        width: 40,
-                        height: 40,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: SectionOption(
@@ -182,15 +162,92 @@ class _SideMenuBaseState extends ConsumerState<SideMenuBase> {
                 ),
 
                 const Spacer(),
-                SectionOption(
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: Colors.black.withValues(alpha: 0.1),
+                      ),
+                    ),
+                  ),
+                  // height: 50,
+                  padding: EdgeInsets.only(
+                    top: RkInsets.xs / 1.5,
+                    bottom: RkInsets.xs,
+                  ),
+                  child: Center(
+                    child: MenuAnchor(
+                      alignmentOffset: Offset(55, -17),
+                      style: MenuStyle(
+                        backgroundColor: WidgetStatePropertyAll(Colors.white),
+                        surfaceTintColor: WidgetStatePropertyAll(
+                          Colors.transparent,
+                        ),
+                        elevation: WidgetStatePropertyAll(
+                          8,
+                        ), // sombra como un "Card"
+                        shadowColor: WidgetStatePropertyAll(Colors.black54),
+                        shape: WidgetStatePropertyAll(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
+                      builder: (context, controller, child) {
+                        return RkInkwell(
+                          onTap: () {
+                            if (controller.isOpen) {
+                              controller.close();
+                            } else {
+                              controller.open();
+                            }
+                          },
+                          child: ClipOval(
+                            child: CachedNetworkImage(
+                              imageUrl:
+                                  'https://cdn.pixabay.com/photo/2018/01/03/19/54/fashion-3059143_960_720.jpg',
+                              width: 40,
+                              height: 40,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
+                      menuChildren: [
+                        MenuItemButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                              Colors.white,
+                            ),
+                            overlayColor: WidgetStatePropertyAll(
+                              Colors.transparent,
+                            ),
+                            foregroundColor: WidgetStatePropertyAll(
+                              Colors.black,
+                            ),
+                          ),
+                          leadingIcon: const Icon(
+                            Icons.logout,
+                            color: Colors.red,
+                          ),
+                          child: const Text('Cerrar sesión'),
+                          onPressed: () async {
+                            await FirebaseAuth.instance.signOut();
+                            context.replaceNamed(RkbRoutes.loginScreen);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                /*SectionOption(
                   icon: Icons.logout,
                   withPading: true,
                   isRed: true,
                   voidCallback: () async {
-                    await FirebaseAuth.instance.signOut();
-                    context.replaceNamed(RkbRoutes.loginScreen);
+                    
                   },
-                ),
+                ),*/
               ],
             ),
           ),

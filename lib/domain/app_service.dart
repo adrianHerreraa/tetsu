@@ -18,8 +18,8 @@ class AppService {
   }
 
   /// Crear un usuario nuevo
-  Future<void> createUser(String uid, Map<String, dynamic> data) async {
-    await _repository.createUser(uid, data);
+  Future<void> createOwnerUser(String uid, Map<String, dynamic> data) async {
+    await _repository.createOwnerUser(uid, data);
   }
 
   /// Escuchar cambios en tiempo real

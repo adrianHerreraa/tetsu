@@ -21,8 +21,8 @@ class AppRepository {
     await _firestore.collection(FirestoreTables.owners).doc(uid).update(data);
   }
 
-  /// Crear un usuario nuevo en Firestore
-  Future<void> createUser(String uid, Map<String, dynamic> data) async {
+  /// Crear un usuario nuevo en Firestore (woner)
+  Future<void> createOwnerUser(String uid, Map<String, dynamic> data) async {
     await _firestore.collection(FirestoreTables.owners).doc(uid).set(data);
   }
 
